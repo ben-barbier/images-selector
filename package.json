@@ -1,17 +1,17 @@
 {
     "name": "images-selector-workspace",
     "version": "0.0.0",
-    "scripts": {
-        "ng": "ng",
-        "start": "ng serve",
-        "build": "ng build images-selector --prod",
-        "test": "ng test",
-        "lint": "ng lint",
-        "e2e": "ng e2e",
-        "prettier": "prettier --write \"**\"",
-        "prettier:check": "prettier --check \"**\""
-    },
     "private": true,
+    "scripts": {
+        "build": "ng build images-selector --prod",
+        "e2e": "ng e2e",
+        "lint": "ng lint",
+        "ng": "ng",
+        "prettier": "prettier --write \"**\"",
+        "prettier:check": "prettier --check \"**\"",
+        "start": "ng serve",
+        "test": "ng test"
+    },
     "dependencies": {
         "@angular/animations": "~11.1.0",
         "@angular/cdk": ">=11.0.4",

@@ -3,7 +3,5 @@ module.exports = {
     rules: {
         'type-empty': [0, 'never'],
     },
-    ignores: [
-        (message) => message.includes('WIP')
-    ]
+    ignores: [message => message.includes('WIP')],
 };
