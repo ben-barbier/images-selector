@@ -12,11 +12,12 @@ export class AppComponent {
         upload: 'Importer des images',
     };
 
-    private readonly baseURL = new URL('https://street-fighter-moves.tech-homies.io/assets/characters');
+    private readonly baseURL = new URL('https://street-fighter-moves.tech-homies.io/assets/characters/');
 
     public readonly pictures: URL[] = [
         new URL('ryu_thumbnail.png', this.baseURL),
         new URL('ken_thumbnail.png', this.baseURL),
         new URL('e-honda_thumbnail.png', this.baseURL),
+        new URL('chun-li_thumbnail.png', this.baseURL),
     ];
 }

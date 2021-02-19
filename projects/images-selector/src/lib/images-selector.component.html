@@ -6,87 +6,72 @@
         cdkDropListGroup
         [ngStyle]="{ justifyContent: imagePreviews.length === 0 ? 'center' : 'flex-start' }"
     >
-        <!-- TODO: garder le tag input ? -->
-        <div
-            *ngIf="!isNative"
-            class="images-uploader_input"
-            [ngClass]="{ disabled: imagePreviews.length >= maxPicture, small: imagePreviews.length > 0 }"
-            #input
-        >
-            <div>
-                <img src="../assets/add.svg" [alt]="labels.add" />
-            </div>
-            <!--                    <input-->
-            <!--                        type="file"-->
-            <!--                        #pictureInput-->
-            <!--                        [alt]="labels.add"-->
-            <!--                        [title]="labels.upload"-->
-            <!--                        multiple-->
-            <!--                        accept="image/*"-->
-            <!--                        (click)="pictureInput.value = ''; markAsTouched()"-->
-            <!--                        (change)="addImage($event.target['files'])"-->
-            <!--                        [disabled]="imagePreviews.length >= maxPicture"-->
-            <!--                        data-qa="btnAddImages"-->
-            <!--                    />-->
-        </div>
+        <!-- TODO: garder le tag #input ? -->
         <!--        <div-->
-        <!--            *ngIf="isNative"-->
+        <!--            *ngIf="!isNative"-->
         <!--            class="images-uploader_input"-->
         <!--            [ngClass]="{ disabled: imagePreviews.length >= maxPicture, small: imagePreviews.length > 0 }"-->
         <!--            #input-->
         <!--        >-->
-        <!--            <button class="native-upload-picture-button" (click)="onTouchTestDiv()">-->
-        <!--                <img src="assets/add.svg" [alt]="labels.add" />-->
-        <!--            </button>-->
+        <!--            <div><img src="../assets/add.svg" [alt]="labels.add" /></div>-->
         <!--        </div>-->
-        <!--        <div cdkDropList id="placeholder" [cdkDropListEnterPredicate]="enter" (cdkDropListDropped)="drop()"></div>-->
-        <!--        <div-->
-        <!--            *ngFor="let preview of imagePreviews; let i = index"-->
-        <!--            cdkDropList-->
-        <!--            [cdkDropListEnterPredicate]="enter"-->
-        <!--            (cdkDropListDropped)="drop()"-->
-        <!--        >-->
-        <!--            <div-->
-        <!--                class="image"-->
-        <!--                cdkDrag-->
-        <!--                [style.background-image]="'url(' + preview.url + ')'"-->
-        <!--                [ngClass]="{ errored: preview.error }"-->
-        <!--            >-->
-        <!--                <div *ngIf="preview.status === 'MODERATED'" class="moderated">-->
-        <!--                    <div-->
-        <!--                        class="images-eraser"-->
-        <!--                        [ngClass]="{ disabled: imagePreviews.length >= maxPicture, small: imagePreviews.length > 0 }"-->
-        <!--                        #input-->
-        <!--                    >-->
-        <!--                        <div>-->
-        <!--                            <img src="assets/add&#45;&#45;active.svg" [alt]="labels.add" />-->
-        <!--                        </div>-->
-        <!--                        <input-->
-        <!--                            type="file"-->
-        <!--                            #pictureInput-->
-        <!--                            [alt]="labels.add"-->
-        <!--                            [title]="labels.upload"-->
-        <!--                            accept="image/*;capture=camera"-->
-        <!--                            (click)="pictureInput.value = ''; markAsTouched()"-->
-        <!--                            (change)="changeImage($event.target['files'], i)"-->
-        <!--                            data-qa="btnAddImages"-->
-        <!--                        />-->
-        <!--                    </div>-->
-        <!--                </div>-->
 
-        <!--                <div class="loader-container" *ngIf="preview.loading">-->
-        <!--                    <mat-spinner diameter="20" color="primary"></mat-spinner>-->
-        <!--                </div>-->
-        <!--                <div class="image-order">{{ i + 1 }}</div>-->
-        <!--                <button type="button" (click)="removeImage(i)" [disabled]="preview.loading" data-qa="btnRemoveImage">-->
-        <!--                    <img src="assets/remove.svg" alt="" />-->
-        <!--                </button>-->
-        <!--            </div>-->
-        <!--        </div>-->
+        <!-- TODO: Voir pkoi on peut peut pas drop sr la dernière case -->
+        <!--        <div cdkDropList id="placeholder" [cdkDropListEnterPredicate]="enter" (cdkDropListDropped)="drop()"></div>-->
+
+        <!--            [cdkDropListEnterPredicate]="enter"-->
+        <div
+            *ngFor="let preview of imagePreviews; let i = index"
+            cdkDropList
+            (cdkDropListEntered)="enter($event)"
+            (cdkDropListDropped)="drop()"
+        >
+            <!-- TODO: voir ce que c'est que "preview.error" ? -->
+            <div
+                class="image"
+                cdkDrag
+                [style.background-image]="'url(' + preview.url + ')'"
+                [ngClass]="{ errored: preview.error }"
+            >
+                <!--                <div *ngIf="preview.status === 'MODERATED'" class="moderated">-->
+                <!--                    <div-->
+                <!--                        class="images-eraser"-->
+                <!--                        [ngClass]="{ disabled: imagePreviews.length >= maxPicture, small: imagePreviews.length > 0 }"-->
+                <!--                        #input-->
+                <!--                    >-->
+                <!--                        <div>-->
+                <!--                            <img src="assets/add&#45;&#45;active.svg" [alt]="labels.add" />-->
+                <!--                        </div>-->
+                <!--                        <input-->
+                <!--                            type="file"-->
+                <!--                            #pictureInput-->
+                <!--                            [alt]="labels.add"-->
+                <!--                            [title]="labels.upload"-->
+                <!--                            accept="image/*;capture=camera"-->
+                <!--                            (click)="pictureInput.value = ''; markAsTouched()"-->
+                <!--                            (change)="changeImage($event.target['files'], i)"-->
+                <!--                            data-qa="btnAddImages"-->
+                <!--                        />-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+                <div class="loader-container" *ngIf="preview.loading">
+                    <mat-spinner diameter="20" color="primary"></mat-spinner>
+                </div>
+                <div class="image-order">{{ i + 1 }}</div>
+                <button
+                    type="button"
+                    (click)="removeImage(preview)"
+                    [disabled]="preview.loading"
+                    data-qa="btnRemoveImage"
+                >
+                    <img src="assets/remove.svg" alt="" />
+                </button>
+            </div>
+        </div>
     </div>
 
-    <!-- TODO: mettre la gestion de la moderation dans le projet   -->
-
+    <!-- TODO: mettre la gestion de la moderation dans le projet (hors du composant)  -->
     <!--    <div class="error-container" *ngIf="displayPictureError">-->
     <!--        <mat-error>-->
     <!--            {{ 'product.error.imageModerated' | translate }}-->

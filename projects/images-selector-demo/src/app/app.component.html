@@ -1,3 +1,27 @@
 <section>
     <lib-images-selector [maxPicture]="5" [labels]="labels" [pictures]="pictures"></lib-images-selector>
+
+    <!--        <input-->
+    <!--            type="file"-->
+    <!--            #pictureInput-->
+    <!--            [alt]="labels.add"-->
+    <!--            [title]="labels.upload"-->
+    <!--            multiple-->
+    <!--            accept="image/*"-->
+    <!--            (click)="pictureInput.value = ''; markAsTouched()"-->
+    <!--            (change)="addImage($event.target['files'])"-->
+    <!--            [disabled]="imagePreviews.length >= maxPicture"-->
+    <!--            data-qa="btnAddImages"-->
+    <!--        />-->
+
+    <!--        <div-->
+    <!--            *ngIf="isNative"-->
+    <!--            class="images-uploader_input"-->
+    <!--            [ngClass]="{ disabled: imagePreviews.length >= maxPicture, small: imagePreviews.length > 0 }"-->
+    <!--            #input-->
+    <!--        >-->
+    <!--            <button class="native-upload-picture-button" (click)="onTouchTestDiv()">-->
+    <!--                <img src="assets/add.svg" [alt]="labels.add" />-->
+    <!--            </button>-->
+    <!--        </div>-->
 </section>
