@@ -1,1 +1,87 @@
-<div cdkDrag>images-selector works!</div>
+<!-- 💡 : If you have an unknown number of connected drop lists, you can use the cdkDropListGroup directive to set up the connection automatically. Note that any new cdkDropList that is added under a group will be connected to all other lists automatically. -->
+<div class="containers" cdkDropListGroup>
+    <div class="item-container" cdkDropList [cdkDropListData]="list1" (cdkDropListDropped)="drop($event)">
+        <div
+            class="item"
+            cdkDrag
+            (cdkDragStarted)="dragStarted()"
+            (cdkDragEnded)="dragEnded()"
+            [cdkDragData]="item"
+            *ngFor="let item of list1"
+            [ngStyle]="{ backgroundColor: item.color }"
+        >
+            {{ item.id }}
+        </div>
+    </div>
+    <div class="item-container" cdkDropList [cdkDropListData]="list2" (cdkDropListDropped)="drop($event)">
+        <div
+            class="item"
+            cdkDrag
+            (cdkDragStarted)="dragStarted()"
+            (cdkDragEnded)="dragEnded()"
+            [cdkDragData]="item"
+            *ngFor="let item of list2"
+            [ngStyle]="{ backgroundColor: item.color }"
+        >
+            {{ item.id }}
+        </div>
+    </div>
+    <div class="item-container" cdkDropList [cdkDropListData]="list3" (cdkDropListDropped)="drop($event)">
+        <div
+            class="item"
+            cdkDrag
+            (cdkDragStarted)="dragStarted()"
+            (cdkDragEnded)="dragEnded()"
+            [cdkDragData]="item"
+            *ngFor="let item of list3"
+            [ngStyle]="{ backgroundColor: item.color }"
+        >
+            {{ item.id }}
+        </div>
+    </div>
+    <div class="item-container" cdkDropList [cdkDropListData]="list4" (cdkDropListDropped)="drop($event)">
+        <div
+            class="item"
+            cdkDrag
+            (cdkDragStarted)="dragStarted()"
+            (cdkDragEnded)="dragEnded()"
+            [cdkDragData]="item"
+            *ngFor="let item of list4"
+            [ngStyle]="{ backgroundColor: item.color }"
+        >
+            {{ item.id }}
+        </div>
+    </div>
+    <div class="item-container" cdkDropList [cdkDropListData]="list5" (cdkDropListDropped)="drop($event)">
+        <div
+            class="item"
+            cdkDrag
+            (cdkDragStarted)="dragStarted()"
+            (cdkDragEnded)="dragEnded()"
+            [cdkDragData]="item"
+            *ngFor="let item of list5"
+            [ngStyle]="{ backgroundColor: item.color }"
+        >
+            {{ item.id }}
+        </div>
+    </div>
+    <div
+        class="item-container placeholder"
+        cdkDropList
+        [cdkDropListData]="list6"
+        (cdkDropListDropped)="drop($event)"
+        [hidden]="!isDragging && !list6.length"
+    >
+        <div
+            class="item"
+            cdkDrag
+            (cdkDragStarted)="dragStarted()"
+            (cdkDragEnded)="dragEnded()"
+            [cdkDragData]="item"
+            *ngFor="let item of list6"
+            [ngStyle]="{ backgroundColor: item.color }"
+        >
+            {{ item.id }}
+        </div>
+    </div>
+</div>
