@@ -3,110 +3,6 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "images-selector-workspace": {
-            "projectType": "application",
-            "schematics": {
-                "@schematics/angular:component": {
-                    "style": "scss"
-                }
-            },
-            "root": "",
-            "sourceRoot": "src",
-            "prefix": "app",
-            "architect": {
-                "build": {
-                    "builder": "@angular-devkit/build-angular:browser",
-                    "options": {
-                        "outputPath": "dist/images-selector-workspace",
-                        "index": "src/index.html",
-                        "main": "src/main.ts",
-                        "polyfills": "src/polyfills.ts",
-                        "tsConfig": "tsconfig.app.json",
-                        "aot": true,
-                        "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": ["src/styles.scss"],
-                        "scripts": []
-                    },
-                    "configurations": {
-                        "production": {
-                            "fileReplacements": [
-                                {
-                                    "replace": "src/environments/environment.ts",
-                                    "with": "src/environments/environment.prod.ts"
-                                }
-                            ],
-                            "optimization": true,
-                            "outputHashing": "all",
-                            "sourceMap": false,
-                            "namedChunks": false,
-                            "extractLicenses": true,
-                            "vendorChunk": false,
-                            "buildOptimizer": true,
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
-                                },
-                                {
-                                    "type": "anyComponentStyle",
-                                    "maximumWarning": "6kb",
-                                    "maximumError": "10kb"
-                                }
-                            ]
-                        }
-                    }
-                },
-                "serve": {
-                    "builder": "@angular-devkit/build-angular:dev-server",
-                    "options": {
-                        "browserTarget": "images-selector-workspace:build"
-                    },
-                    "configurations": {
-                        "production": {
-                            "browserTarget": "images-selector-workspace:build:production"
-                        }
-                    }
-                },
-                "extract-i18n": {
-                    "builder": "@angular-devkit/build-angular:extract-i18n",
-                    "options": {
-                        "browserTarget": "images-selector-workspace:build"
-                    }
-                },
-                "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
-                    "options": {
-                        "main": "src/test.ts",
-                        "polyfills": "src/polyfills.ts",
-                        "tsConfig": "tsconfig.spec.json",
-                        "karmaConfig": "karma.conf.js",
-                        "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": ["src/styles.scss"],
-                        "scripts": []
-                    }
-                },
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tsConfig": ["tsconfig.app.json", "tsconfig.spec.json", "e2e/tsconfig.json"],
-                        "exclude": ["**/node_modules/**"]
-                    }
-                },
-                "e2e": {
-                    "builder": "@angular-devkit/build-angular:protractor",
-                    "options": {
-                        "protractorConfig": "e2e/protractor.conf.js",
-                        "devServerTarget": "images-selector-workspace:serve"
-                    },
-                    "configurations": {
-                        "production": {
-                            "devServerTarget": "images-selector-workspace:serve:production"
-                        }
-                    }
-                }
-            }
-        },
         "images-selector": {
             "projectType": "library",
             "root": "projects/images-selector",
@@ -144,7 +40,132 @@
                     }
                 }
             }
+        },
+        "images-selector-demo": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "root": "projects/images-selector-demo",
+            "sourceRoot": "projects/images-selector-demo/src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/images-selector-demo",
+                        "index": "projects/images-selector-demo/src/index.html",
+                        "main": "projects/images-selector-demo/src/main.ts",
+                        "polyfills": "projects/images-selector-demo/src/polyfills.ts",
+                        "tsConfig": "projects/images-selector-demo/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            "projects/images-selector-demo/src/favicon.ico",
+                            "projects/images-selector-demo/src/assets",
+                            {
+                                "glob": "**/*",
+                                "input": "projects/images-selector/src/assets",
+                                "output": "/assets/"
+                            }
+                        ],
+                        "styles": [
+                            "projects/images-selector-demo/src/styles.scss"
+                        ],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "projects/images-selector-demo/src/environments/environment.ts",
+                                    "with": "projects/images-selector-demo/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "images-selector-demo:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "images-selector-demo:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "images-selector-demo:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/images-selector-demo/src/test.ts",
+                        "polyfills": "projects/images-selector-demo/src/polyfills.ts",
+                        "tsConfig": "projects/images-selector-demo/tsconfig.spec.json",
+                        "karmaConfig": "projects/images-selector-demo/karma.conf.js",
+                        "assets": [
+                            "projects/images-selector-demo/src/favicon.ico",
+                            "projects/images-selector-demo/src/assets"
+                        ],
+                        "styles": [
+                            "projects/images-selector-demo/src/styles.scss"
+                        ],
+                        "scripts": []
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/images-selector-demo/tsconfig.app.json",
+                            "projects/images-selector-demo/tsconfig.spec.json",
+                            "projects/images-selector-demo/e2e/tsconfig.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                },
+                "e2e": {
+                    "builder": "@angular-devkit/build-angular:protractor",
+                    "options": {
+                        "protractorConfig": "projects/images-selector-demo/e2e/protractor.conf.js",
+                        "devServerTarget": "images-selector-demo:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "images-selector-demo:serve:production"
+                        }
+                    }
+                }
+            }
         }
     },
-    "defaultProject": "images-selector-workspace"
+    "defaultProject": "images-selector-demo"
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ImagesSelectorModule } from '../../projects/images-selector/src/lib/images-selector.module';
+import { ImagesSelectorModule } from 'images-selector';
 import { AppComponent } from './app.component';
 
 @NgModule({

@@ -3,13 +3,14 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "build": "ng build images-selector --prod",
-        "e2e": "ng e2e",
+        "build:demo": "ng build images-selector-demo --prod",
+        "build:lib": "ng build images-selector --prod",
         "lint": "ng lint",
         "ng": "ng",
         "prettier": "prettier --write \"**\"",
         "prettier:check": "prettier --check \"**\"",
-        "start": "ng serve",
+        "start:demo": "ng serve",
+        "start:lib": "ng build images-selector --watch",
         "test": "ng test"
     },
     "dependencies": {

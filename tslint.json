@@ -33,7 +33,7 @@
         "no-var-requires": false,
         "object-literal-key-quotes": [true, "as-needed"],
         "semicolon": {
-            "options": ["always"]
+            "options": ["always", "ignore-bound-class-methods"]
         },
         "space-before-function-paren": {
             "options": {
